@@ -2,14 +2,28 @@ import supervision as sv
 import cv2
 import os
 
-from modules.core.frame_data import FrameData
+from modules.core.frame_data import (
+    FrameData
+)
 
 # =========================================================
 # CORE
 # =========================================================
-from modules.core.detector import Detector
-from modules.core.tracker import Tracker
-from modules.core.trajectory import TrajectoryManager
+from modules.core.detector import (
+    Detector
+)
+
+from modules.core.tracker import (
+    Tracker
+)
+
+from modules.core.trajectory import (
+    TrajectoryManager
+)
+
+from modules.core.stage_manager import (
+    StageManager
+)
 
 # =========================================================
 # STAGES
@@ -184,6 +198,13 @@ class Pipeline:
         )
 
         # =====================================================
+        # STAGE MANAGER
+        # =====================================================
+        self.stage_manager = (
+            StageManager()
+        )
+
+        # =====================================================
         # SPATIAL
         # =====================================================
         self.homography = (
@@ -282,12 +303,15 @@ class Pipeline:
         )
 
         # =====================================================
-        # STAGES
+        # REGISTER STAGES
         # =====================================================
 
         if ENABLE_DETECTION:
 
-            self.detection_stage = (
+            self.stage_manager.register(
+
+                "detection",
+
                 DetectionStage(
                     self.detector
                 )
@@ -295,7 +319,10 @@ class Pipeline:
 
         if ENABLE_TRACKING:
 
-            self.tracking_stage = (
+            self.stage_manager.register(
+
+                "tracking",
+
                 TrackingStage(
 
                     self.tracker,
@@ -306,7 +333,10 @@ class Pipeline:
 
         if ENABLE_SPATIAL:
 
-            self.spatial_stage = (
+            self.stage_manager.register(
+
+                "spatial",
+
                 SpatialStage(
 
                     self.rois,
@@ -319,7 +349,10 @@ class Pipeline:
 
         if ENABLE_ANALYTICS:
 
-            self.analytics_stage = (
+            self.stage_manager.register(
+
+                "analytics",
+
                 AnalyticsStage(
 
                     self.trajectory,
@@ -332,19 +365,31 @@ class Pipeline:
 
         if ENABLE_COUNTING:
 
-            self.counting_stage = (
+            self.stage_manager.register(
+
+                "counting",
+
                 CountingStage()
             )
 
         if ENABLE_VIOLATIONS:
 
-            self.violation_stage = (
+            self.stage_manager.register(
+
+                "violations",
+
                 ViolationStage(
                     self.rule_engine
                 )
             )
 
-        self.engine_stage = (
+        # =====================================================
+        # ENGINE STAGE
+        # =====================================================
+        self.stage_manager.register(
+
+            "engines",
+
             EngineStage(
 
                 engine_registry=(
@@ -353,14 +398,23 @@ class Pipeline:
             )
         )
 
+        # =====================================================
+        # EVENT STAGE
+        # =====================================================
         if ENABLE_EVENTS:
 
-            self.event_stage = (
+            self.stage_manager.register(
+
+                "events",
+
                 EventStage(
                     self.event_manager
                 )
             )
 
+        # =====================================================
+        # VISUALIZATION
+        # =====================================================
         if ENABLE_VISUALIZATION:
 
             self.visualization_stage = (
@@ -452,104 +506,53 @@ class Pipeline:
         frame_data = FrameData()
 
         # =====================================================
-        # DETECTION
+        # STAGE EXECUTION
         # =====================================================
-        if ENABLE_DETECTION:
+        for stage_name, stage in (
 
-            frame_data = (
-                self.detection_stage.process(
+            self.stage_manager.get_stages()
+        ):
+
+            # =================================================
+            # DETECTION
+            # =================================================
+            if stage_name == "detection":
+
+                frame_data = stage.process(
 
                     frame,
 
                     frame_data
                 )
-            )
 
-        # =====================================================
-        # TRACKING
-        # =====================================================
-        if ENABLE_TRACKING:
+            # =================================================
+            # ENGINE STAGE
+            # =================================================
+            elif stage_name == "engines":
 
-            frame_data = (
-                self.tracking_stage.process(
+                frame_data = stage.process(
+
+                    frame=frame,
+
+                    frame_data=frame_data,
+
+                    trajectory_manager=(
+                        self.trajectory
+                    ),
+
+                    zone_logic=(
+                        self.zone_logic
+                    )
+                )
+
+            # =================================================
+            # NORMAL STAGES
+            # =================================================
+            else:
+
+                frame_data = stage.process(
                     frame_data
                 )
-            )
-
-        # =====================================================
-        # SPATIAL
-        # =====================================================
-        if ENABLE_SPATIAL:
-
-            frame_data = (
-                self.spatial_stage.process(
-                    frame_data
-                )
-            )
-
-        # =====================================================
-        # ANALYTICS
-        # =====================================================
-        if ENABLE_ANALYTICS:
-
-            frame_data = (
-                self.analytics_stage.process(
-                    frame_data
-                )
-            )
-
-        # =====================================================
-        # COUNTING
-        # =====================================================
-        if ENABLE_COUNTING:
-
-            frame_data = (
-                self.counting_stage.process(
-                    frame_data
-                )
-            )
-
-        # =====================================================
-        # VIOLATIONS
-        # =====================================================
-        if ENABLE_VIOLATIONS:
-
-            frame_data = (
-                self.violation_stage.process(
-                    frame_data
-                )
-            )
-
-        # =====================================================
-        # ENGINES
-        # =====================================================
-        frame_data = (
-            self.engine_stage.process(
-
-                frame=frame,
-
-                frame_data=frame_data,
-
-                trajectory_manager=(
-                    self.trajectory
-                ),
-
-                zone_logic=(
-                    self.zone_logic
-                )
-            )
-        )
-
-        # =====================================================
-        # EVENTS
-        # =====================================================
-        if ENABLE_EVENTS:
-
-            frame_data = (
-                self.event_stage.process(
-                    frame_data
-                )
-            )
 
         # =====================================================
         # ACCIDENT DISPLAY TIMER
