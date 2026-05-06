@@ -2,7 +2,7 @@ import numpy as np
 import supervision as sv
 from collections import defaultdict
 
-from modules.engines.accident_base import BaseAccidentEngine
+from modules.engines.accident.accident_base import BaseAccidentEngine
 
 
 class RuleBasedAccidentEngine(BaseAccidentEngine):

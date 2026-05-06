@@ -3,16 +3,23 @@
 import numpy as np
 from collections import defaultdict, deque
 
+from config.config import (
+    SPEED_WINDOW_SIZE,
+    SPEED_SMOOTHING_ALPHA,
+    MIN_MOVEMENT_DISTANCE,
+    MAX_REASONABLE_SPEED,
+    MAX_TRAJECTORY_POINTS
+)
 
 class SpeedEstimator:
 
     def __init__(
         self,
         homography_manager,
-        window_size=10,
-        smoothing_alpha=0.3,
-        min_distance=0.5,
-        max_speed=220
+        window_size=SPEED_WINDOW_SIZE,
+        smoothing_alpha=SPEED_SMOOTHING_ALPHA,
+        min_distance=MIN_MOVEMENT_DISTANCE,
+        max_speed=MAX_REASONABLE_SPEED
     ):
 
         # =====================================================
@@ -40,7 +47,7 @@ class SpeedEstimator:
         self.smoothed_speeds = {}
 
         self.speed_history = defaultdict(
-            lambda: deque(maxlen=30)
+            lambda: deque(maxlen=MAX_TRAJECTORY_POINTS)
         )
 
     # =========================================================
