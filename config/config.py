@@ -1,0 +1,10 @@
+MODEL_PATH = "yolov8s.pt"
+
+CONFIDENCE_THRESHOLD = 0.3
+IOU_THRESHOLD = 0.5
+
+DEVICE = "cuda"
+IMG_SIZE = 960
+
+#tracking config
+ALLOWED_CLASSES = [0, 1, 2, 3, 5, 7]

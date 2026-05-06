@@ -1,0 +1,53 @@
+import time
+
+
+class EventManager:
+
+    def __init__(self, cooldown=2.0):
+        """
+        cooldown: seconds before same event can trigger again
+        """
+        self.cooldown = cooldown
+
+        # (tracker_id, event_type) → last_trigger_time
+        self.last_events = {}
+
+        # stored events
+        self.events = []
+
+    def update(self, tracker_id, violations, zone):
+        """
+        Process violations and generate events
+        """
+        current_time = time.time()
+
+        new_events = []
+
+        for v in violations:
+
+            key = (tracker_id, v)
+
+            last_time = self.last_events.get(key, 0)
+
+            # avoid duplicate spam
+            if current_time - last_time < self.cooldown:
+                continue
+
+            event = {
+                "type": v,
+                "tracker_id": tracker_id,
+                "zone": zone,
+                "time": current_time
+            }
+
+            self.events.append(event)
+            self.last_events[key] = current_time
+            new_events.append(event)
+
+        return new_events
+
+    def get_events(self):
+        return self.events
+
+    def clear(self):
+        self.events = []

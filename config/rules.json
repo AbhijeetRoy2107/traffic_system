@@ -1,0 +1,15 @@
+{
+  "zones": {
+    "sidewalk": {
+      "allowed_classes": ["person"],
+      "violation_classes": ["car", "bus", "truck", "motorcycle", "bicycle"]
+    },
+    "lane_1": {
+      "allowed_classes": ["car", "bus", "truck", "motorcycle", "bicycle"],
+      "violation_classes": ["person"]
+    },
+    "speed_zone": {
+      "max_speed": 50
+    }
+  }
+}

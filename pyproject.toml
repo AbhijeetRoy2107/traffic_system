@@ -1,0 +1,14 @@
+[project]
+name = "traffic-system"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.2.6",
+    "opencv-python>=4.13.0.92",
+    "supervision>=0.28.0",
+    "torch>=2.11.0",
+    "tqdm>=4.67.3",
+    "ultralytics>=8.4.46",
+]
