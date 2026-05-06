@@ -1,15 +1,26 @@
 import time
 
 from modules.shared.schemas import (
+
     create_event
 )
 
 
+# =========================================================
+# EVENT MANAGER
+# =========================================================
 class EventManager:
 
-    def __init__(self, cooldown=2.0):
+    def __init__(
+
+        self,
+
+        cooldown=2.0
+    ):
+
         """
-        cooldown: seconds before same event
+        cooldown:
+        seconds before same event
         can trigger again
         """
 
@@ -18,11 +29,12 @@ class EventManager:
         # =================================================
         # EVENT MEMORY
         # =================================================
-        # (tracker_id, event_type) -> last_trigger_time
+        # (tracker_id, event_type)
+        # -> last trigger time
         self.last_events = {}
 
         # =================================================
-        # STORED EVENTS
+        # EVENT STORAGE
         # =================================================
         self.events = []
 
@@ -37,22 +49,32 @@ class EventManager:
 
         violations,
 
-        zone
+        zone,
+
+        source="rule_engine",
+
+        confidence=None,
+
+        metadata=None
     ):
-        """
-        Process violations and generate events
-        """
 
         current_time = time.time()
 
         new_events = []
 
-        for v in violations:
+        for event_type in violations:
 
-            key = (tracker_id, v)
+            key = (
+
+                tracker_id,
+
+                event_type
+            )
 
             last_time = self.last_events.get(
+
                 key,
+
                 0
             )
 
@@ -60,6 +82,7 @@ class EventManager:
             # COOLDOWN CHECK
             # =============================================
             if (
+
                 current_time - last_time
                 < self.cooldown
             ):
@@ -71,20 +94,26 @@ class EventManager:
             # =============================================
             event = create_event(
 
-                event_type=v,
+                event_type=event_type,
 
                 tracker_ids=[tracker_id],
 
                 zone=zone,
 
-                severity="warning"
+                source=source,
+
+                confidence=confidence,
+
+                metadata=metadata
             )
+
+            event_dict = event.to_dict()
 
             # =============================================
             # STORE
             # =============================================
             self.events.append(
-                event.__dict__
+                event_dict
             )
 
             self.last_events[
@@ -92,7 +121,7 @@ class EventManager:
             ] = current_time
 
             new_events.append(
-                event.__dict__
+                event_dict
             )
 
         return new_events
@@ -105,7 +134,7 @@ class EventManager:
         return self.events
 
     # =====================================================
-    # CLEAR
+    # CLEAR EVENTS
     # =====================================================
     def clear(self):
 

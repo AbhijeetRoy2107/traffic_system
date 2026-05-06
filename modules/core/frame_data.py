@@ -1,7 +1,18 @@
-from dataclasses import dataclass, field
-from typing import Dict, List, Any
+from dataclasses import (
+    dataclass,
+    field
+)
+
+from typing import (
+    Dict,
+    List,
+    Any
+)
 
 
+# =========================================================
+# FRAME DATA
+# =========================================================
 @dataclass
 class FrameData:
 
@@ -17,14 +28,12 @@ class FrameData:
     # =====================================================
     # RAW DETECTIONS
     # =====================================================
-    detections: List[Any] = field(
-        default_factory=list
-    )
+    detections: Any = None
 
     # =====================================================
-    # TRACKED OBJECTS
+    # TRACKING
     # =====================================================
-    tracked_objects: List[dict] = field(
+    tracked_objects: List[int] = field(
         default_factory=list
     )
 
@@ -66,21 +75,6 @@ class FrameData:
     )
 
     # =====================================================
-    # OPTIONAL ENGINES
-    # =====================================================
-    emergency_vehicles: List[dict] = field(
-        default_factory=list
-    )
-
-    anpr_results: List[dict] = field(
-        default_factory=list
-    )
-
-    accidents: List[dict] = field(
-        default_factory=list
-    )
-
-    # =====================================================
     # ENGINE OUTPUTS
     # =====================================================
     engines: Dict[str, Any] = field(
@@ -98,12 +92,5 @@ class FrameData:
     # EXTRA
     # =====================================================
     metadata: Dict[str, Any] = field(
-        default_factory=dict
-    )
-    
-    # =====================================================
-    # ENGINE OUTPUTS
-    # =====================================================
-    engines: Dict[str, Any] = field(
         default_factory=dict
     )

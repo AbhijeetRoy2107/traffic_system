@@ -6,9 +6,14 @@ from config.config import (
     MAX_TRAJECTORY_POINTS
 )
 
+from modules.visualization.map_projection import (
+    GlobalMapProjection
+)
+
 from modules.core.stages.base_stage import (
     BaseStage
 )
+
 
 class VisualizationStage(BaseStage):
 
@@ -28,7 +33,9 @@ class VisualizationStage(BaseStage):
 
         label_annotator,
 
-        rois
+        rois,
+
+        homography
     ):
 
         self.video_info = video_info
@@ -44,6 +51,12 @@ class VisualizationStage(BaseStage):
         self.label_annotator = label_annotator
 
         self.rois = rois
+
+        self.homography = homography
+        
+        self.map_projection = (
+            GlobalMapProjection()
+        )
 
         self.thickness = (
             sv.calculate_optimal_line_thickness(
@@ -85,6 +98,9 @@ class VisualizationStage(BaseStage):
 
         detections
     ):
+
+        if len(detections) == 0:
+            return
 
         for tracker_id in detections.tracker_id:
 
@@ -140,11 +156,26 @@ class VisualizationStage(BaseStage):
         frame
     ):
 
-        for roi in self.rois:
+        roi_colors = [
+
+            (0, 255, 180),
+            (255, 180, 0),
+            (180, 0, 255),
+            (0, 180, 255),
+            (255, 80, 80)
+        ]
+
+        for i, roi in enumerate(
+            self.rois
+        ):
 
             pts = np.array(
                 roi["points"]
             )
+
+            color = roi_colors[
+                i % len(roi_colors)
+            ]
 
             frame = sv.draw_polygon(
 
@@ -152,28 +183,34 @@ class VisualizationStage(BaseStage):
 
                 polygon=pts,
 
-                color=sv.Color(0, 255, 0),
+                color=sv.Color(*color),
 
                 thickness=self.thickness
             )
 
             if len(pts) > 0:
 
-                x, y = pts[0]
+                centroid = np.mean(
+                    pts,
+                    axis=0
+                ).astype(int)
 
                 cv2.putText(
 
                     frame,
 
-                    roi["label"],
+                    roi.get(
+                        "label",
+                        "ZONE"
+                    ),
 
-                    (x, y - 10),
+                    tuple(centroid),
 
                     cv2.FONT_HERSHEY_SIMPLEX,
 
-                    0.6,
+                    0.7,
 
-                    (255, 255, 255),
+                    color,
 
                     2
                 )
@@ -235,17 +272,38 @@ class VisualizationStage(BaseStage):
                 )
 
                 # =========================================
+                # VISUAL PROJECTION
+                # =========================================
+                visual_world = (
+                    self.map_projection.project_point(
+
+                        world_point,
+
+                        zone
+                    )
+                )
+
+                visual_trajectory = (
+                    self.map_projection.project_trajectory(
+
+                        world_traj,
+
+                        zone
+                    )
+                )
+
+                # =========================================
                 # BIRD-EYE OBJECT
                 # =========================================
                 frame_data.bird_eye_objects.append({
 
                     "id": tracker_id,
 
-                    "world": world_point,
+                    "world": visual_world,
 
                     "speed": speed,
 
-                    "trajectory": world_traj,
+                    "trajectory": visual_trajectory,
 
                     "color": color
                 })
@@ -271,7 +329,11 @@ class VisualizationStage(BaseStage):
         # =================================================
         bird_frame = self.birdeye.render(
 
-            frame_data.bird_eye_objects
+            objects=frame_data.bird_eye_objects,
+
+            rois=self.rois,
+
+            homography=self.homography
         )
 
         # =================================================

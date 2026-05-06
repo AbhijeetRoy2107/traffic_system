@@ -57,3 +57,165 @@
 [2026-05-06 12:47:47,361] [INFO] Loaded 2 ROIs
 [2026-05-06 12:47:47,363] [INFO] Pipeline initialized successfully
 [2026-05-06 12:47:55,962] [INFO] Pipeline released
+[2026-05-06 12:53:34,437] [INFO] Initializing pipeline...
+[2026-05-06 12:53:36,096] [INFO] Homography manager initialized
+[2026-05-06 12:53:36,097] [INFO] Loaded 2 ROIs
+[2026-05-06 12:53:36,100] [INFO] Pipeline initialized successfully
+[2026-05-06 12:53:44,678] [INFO] Pipeline released
+[2026-05-06 12:56:50,398] [INFO] Initializing pipeline...
+[2026-05-06 12:56:52,074] [INFO] Homography manager initialized
+[2026-05-06 12:56:52,075] [INFO] Loaded 2 ROIs
+[2026-05-06 12:56:52,077] [INFO] Pipeline initialized successfully
+[2026-05-06 12:57:31,694] [INFO] Initializing pipeline...
+[2026-05-06 12:57:32,663] [INFO] Homography manager initialized
+[2026-05-06 12:57:32,664] [INFO] Loaded 2 ROIs
+[2026-05-06 12:57:32,666] [INFO] Pipeline initialized successfully
+[2026-05-06 13:02:48,202] [INFO] Initializing pipeline...
+[2026-05-06 13:02:49,871] [INFO] Homography manager initialized
+[2026-05-06 13:02:49,871] [INFO] Loaded 2 ROIs
+[2026-05-06 13:02:49,873] [INFO] Pipeline initialized successfully
+[2026-05-06 13:05:06,195] [INFO] Initializing pipeline...
+[2026-05-06 13:05:07,882] [INFO] Homography manager initialized
+[2026-05-06 13:05:07,883] [INFO] Loaded 2 ROIs
+[2026-05-06 13:05:07,885] [INFO] Pipeline initialized successfully
+[2026-05-06 13:06:35,181] [INFO] Initializing pipeline...
+[2026-05-06 13:06:36,845] [INFO] Homography manager initialized
+[2026-05-06 13:06:36,846] [INFO] Loaded 2 ROIs
+[2026-05-06 13:06:36,848] [INFO] Pipeline initialized successfully
+[2026-05-06 13:08:35,067] [INFO] Initializing pipeline...
+[2026-05-06 13:08:36,741] [INFO] Homography manager initialized
+[2026-05-06 13:08:36,741] [INFO] Loaded 2 ROIs
+[2026-05-06 13:08:36,743] [INFO] Pipeline initialized successfully
+[2026-05-06 13:11:02,088] [INFO] Initializing pipeline...
+[2026-05-06 13:11:03,082] [INFO] Homography manager initialized
+[2026-05-06 13:11:03,083] [INFO] Loaded 2 ROIs
+[2026-05-06 13:11:03,085] [INFO] Pipeline initialized successfully
+[2026-05-06 13:14:51,117] [INFO] Initializing pipeline...
+[2026-05-06 13:14:52,803] [INFO] Homography manager initialized
+[2026-05-06 13:14:52,804] [INFO] Loaded 2 ROIs
+[2026-05-06 13:14:52,806] [INFO] Pipeline initialized successfully
+[2026-05-06 13:15:32,958] [INFO] Initializing pipeline...
+[2026-05-06 13:15:33,987] [INFO] Homography manager initialized
+[2026-05-06 13:15:33,988] [INFO] Loaded 2 ROIs
+[2026-05-06 13:15:33,990] [INFO] Pipeline initialized successfully
+[2026-05-06 13:15:42,558] [INFO] Pipeline released
+[2026-05-06 13:16:40,041] [INFO] Initializing pipeline...
+[2026-05-06 13:16:41,711] [INFO] Homography manager initialized
+[2026-05-06 13:16:41,711] [INFO] Loaded 3 ROIs
+[2026-05-06 13:16:41,714] [INFO] Pipeline initialized successfully
+[2026-05-06 13:17:10,064] [INFO] Pipeline released
+[2026-05-06 13:20:15,124] [INFO] Initializing pipeline...
+[2026-05-06 13:20:16,814] [INFO] Homography manager initialized
+[2026-05-06 13:20:16,815] [INFO] Loaded 2 ROIs
+[2026-05-06 13:20:16,817] [INFO] Pipeline initialized successfully
+[2026-05-06 13:20:25,775] [INFO] Pipeline released
+[2026-05-06 13:21:17,737] [INFO] Initializing pipeline...
+[2026-05-06 13:21:19,434] [INFO] Homography manager initialized
+[2026-05-06 13:21:19,435] [INFO] Loaded 2 ROIs
+[2026-05-06 13:21:19,437] [INFO] Pipeline initialized successfully
+[2026-05-06 13:21:33,562] [INFO] Pipeline released
+[2026-05-06 13:23:06,300] [INFO] Initializing pipeline...
+[2026-05-06 13:23:07,973] [INFO] Homography manager initialized
+[2026-05-06 13:23:07,973] [INFO] Loaded 2 ROIs
+[2026-05-06 13:23:07,975] [INFO] Pipeline initialized successfully
+[2026-05-06 13:23:24,296] [INFO] Pipeline released
+[2026-05-06 13:25:35,232] [INFO] Initializing pipeline...
+[2026-05-06 13:25:36,904] [INFO] Homography manager initialized
+[2026-05-06 13:25:36,905] [INFO] Loaded 2 ROIs
+[2026-05-06 13:25:36,907] [INFO] Pipeline initialized successfully
+[2026-05-06 13:25:46,420] [INFO] Pipeline released
+[2026-05-06 13:32:15,602] [INFO] Initializing pipeline...
+[2026-05-06 13:32:17,277] [INFO] Homography manager initialized
+[2026-05-06 13:32:17,277] [INFO] Loaded 2 ROIs
+[2026-05-06 13:32:17,279] [INFO] Pipeline initialized successfully
+[2026-05-06 13:32:26,624] [INFO] Pipeline released
+[2026-05-06 13:35:27,358] [INFO] Initializing pipeline...
+[2026-05-06 13:35:28,319] [INFO] Homography manager initialized
+[2026-05-06 13:35:28,320] [INFO] Loaded 3 ROIs
+[2026-05-06 13:35:28,323] [INFO] Pipeline initialized successfully
+[2026-05-06 13:35:56,079] [INFO] Pipeline released
+[2026-05-06 13:39:53,777] [INFO] Initializing pipeline...
+[2026-05-06 13:39:55,461] [INFO] Homography manager initialized
+[2026-05-06 13:39:55,462] [INFO] Loaded 2 ROIs
+[2026-05-06 13:39:55,464] [INFO] Pipeline initialized successfully
+[2026-05-06 13:40:04,072] [INFO] Pipeline released
+[2026-05-06 13:46:45,349] [INFO] Initializing pipeline...
+[2026-05-06 13:46:47,087] [INFO] Homography manager initialized
+[2026-05-06 13:46:47,088] [INFO] Loaded 2 ROIs
+[2026-05-06 13:46:47,090] [INFO] Pipeline initialized successfully
+[2026-05-06 13:46:55,779] [INFO] Pipeline released
+[2026-05-06 14:02:10,480] [INFO] Initializing pipeline...
+[2026-05-06 14:02:12,158] [INFO] Homography manager initialized
+[2026-05-06 14:02:12,158] [INFO] Loaded 2 ROIs
+[2026-05-06 14:02:12,161] [INFO] Pipeline initialized successfully
+[2026-05-06 14:02:20,643] [INFO] Pipeline released
+[2026-05-06 14:06:07,174] [INFO] Initializing pipeline...
+[2026-05-06 14:06:08,841] [INFO] Homography manager initialized
+[2026-05-06 14:06:08,842] [INFO] Loaded 2 ROIs
+[2026-05-06 14:06:08,845] [INFO] Pipeline initialized successfully
+[2026-05-06 14:06:18,181] [INFO] Pipeline released
+[2026-05-06 14:07:05,956] [INFO] Initializing pipeline...
+[2026-05-06 14:07:07,622] [INFO] Homography manager initialized
+[2026-05-06 14:07:07,622] [INFO] Loaded 3 ROIs
+[2026-05-06 14:07:07,626] [INFO] Pipeline initialized successfully
+[2026-05-06 14:07:59,084] [INFO] Pipeline released
+[2026-05-06 14:09:20,269] [INFO] Initializing pipeline...
+[2026-05-06 14:09:21,954] [INFO] Homography manager initialized
+[2026-05-06 14:09:21,954] [INFO] Loaded 2 ROIs
+[2026-05-06 14:09:21,957] [INFO] Pipeline initialized successfully
+[2026-05-06 14:09:31,365] [INFO] Pipeline released
+[2026-05-06 14:10:39,663] [INFO] Initializing pipeline...
+[2026-05-06 14:10:41,372] [INFO] Homography manager initialized
+[2026-05-06 14:10:41,373] [INFO] Loaded 3 ROIs
+[2026-05-06 14:10:41,376] [INFO] Pipeline initialized successfully
+[2026-05-06 14:11:12,511] [INFO] Pipeline released
+[2026-05-06 14:16:26,387] [INFO] Initializing pipeline...
+[2026-05-06 14:16:27,351] [INFO] Homography manager initialized
+[2026-05-06 14:16:27,351] [INFO] Loaded 2 ROIs
+[2026-05-06 14:16:27,354] [INFO] Pipeline initialized successfully
+[2026-05-06 14:16:35,915] [INFO] Pipeline released
+[2026-05-06 14:16:46,137] [INFO] Initializing pipeline...
+[2026-05-06 14:16:47,802] [INFO] Homography manager initialized
+[2026-05-06 14:16:47,802] [INFO] Loaded 3 ROIs
+[2026-05-06 14:16:47,805] [INFO] Pipeline initialized successfully
+[2026-05-06 14:17:15,237] [INFO] Pipeline released
+[2026-05-06 14:20:59,683] [INFO] Initializing pipeline...
+[2026-05-06 14:21:00,682] [INFO] Homography manager initialized
+[2026-05-06 14:21:00,683] [INFO] Loaded 3 ROIs
+[2026-05-06 14:21:00,687] [INFO] Pipeline initialized successfully
+[2026-05-06 14:21:28,044] [INFO] Pipeline released
+[2026-05-06 14:21:53,378] [INFO] Initializing pipeline...
+[2026-05-06 14:21:54,128] [INFO] Homography manager initialized
+[2026-05-06 14:21:54,129] [INFO] Loaded 2 ROIs
+[2026-05-06 14:21:54,132] [INFO] Pipeline initialized successfully
+[2026-05-06 14:22:03,602] [INFO] Pipeline released
+[2026-05-06 14:41:05,569] [INFO] Initializing pipeline...
+[2026-05-06 14:41:07,262] [INFO] Homography manager initialized
+[2026-05-06 14:41:07,262] [INFO] Loaded 3 ROIs
+[2026-05-06 14:41:07,266] [INFO] Pipeline initialized successfully
+[2026-05-06 14:41:35,211] [INFO] Pipeline released
+[2026-05-06 14:42:37,836] [INFO] Initializing pipeline...
+[2026-05-06 14:42:39,500] [INFO] Homography manager initialized
+[2026-05-06 14:42:39,500] [INFO] Loaded 2 ROIs
+[2026-05-06 14:42:39,502] [INFO] Pipeline initialized successfully
+[2026-05-06 14:42:52,631] [INFO] Pipeline released
+[2026-05-06 14:46:28,524] [INFO] Initializing pipeline...
+[2026-05-06 14:46:29,526] [INFO] Homography manager initialized
+[2026-05-06 14:46:29,539] [INFO] Loaded 2 ROIs
+[2026-05-06 14:46:29,543] [INFO] Pipeline initialized successfully
+[2026-05-06 14:46:44,002] [INFO] Pipeline released
+[2026-05-06 14:48:39,456] [INFO] Initializing pipeline...
+[2026-05-06 14:48:41,130] [INFO] Homography manager initialized
+[2026-05-06 14:48:41,131] [INFO] Loaded 2 ROIs
+[2026-05-06 14:48:41,134] [INFO] Pipeline initialized successfully
+[2026-05-06 14:48:55,500] [INFO] Pipeline released
+[2026-05-06 14:49:36,327] [INFO] Initializing pipeline...
+[2026-05-06 14:49:37,999] [INFO] Homography manager initialized
+[2026-05-06 14:49:37,999] [INFO] Loaded 2 ROIs
+[2026-05-06 14:49:38,001] [INFO] Pipeline initialized successfully
+[2026-05-06 14:49:46,653] [INFO] Pipeline released
+[2026-05-06 14:51:52,870] [INFO] Initializing pipeline...
+[2026-05-06 14:51:54,564] [INFO] Homography manager initialized
+[2026-05-06 14:51:54,564] [INFO] Loaded 2 ROIs
+[2026-05-06 14:51:54,566] [INFO] Pipeline initialized successfully
+[2026-05-06 14:52:03,256] [INFO] Pipeline released

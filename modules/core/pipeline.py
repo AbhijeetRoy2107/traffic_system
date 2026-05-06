@@ -71,6 +71,10 @@ from modules.analytics.speed import (
     SpeedEstimator
 )
 
+from modules.analytics.congestion import (
+    CongestionAnalyzer
+)
+
 # =========================================================
 # SPATIAL
 # =========================================================
@@ -238,6 +242,10 @@ class Pipeline:
             )
         )
 
+        self.congestion_analyzer = (
+            CongestionAnalyzer()
+        )
+
         # =====================================================
         # RULES / EVENTS
         # =====================================================
@@ -359,7 +367,11 @@ class Pipeline:
 
                     self.speed_estimator,
 
-                    self.homography
+                    self.homography,
+
+                    congestion_analyzer=(
+                        self.congestion_analyzer
+                    )
                 )
             )
 
@@ -415,34 +427,34 @@ class Pipeline:
         # =====================================================
         # VISUALIZATION
         # =====================================================
-        if ENABLE_VISUALIZATION:
+        self.visualization_stage = (
+            VisualizationStage(
 
-            self.visualization_stage = (
-                VisualizationStage(
+                video_info=video_info,
 
-                    video_info=video_info,
+                trajectory_manager=(
+                    self.trajectory
+                ),
 
-                    trajectory_manager=(
-                        self.trajectory
-                    ),
+                label_builder=(
+                    self.label_builder
+                ),
 
-                    label_builder=(
-                        self.label_builder
-                    ),
+                birdeye=self.birdeye,
 
-                    birdeye=self.birdeye,
+                box_annotator=(
+                    self.box_annotator
+                ),
 
-                    box_annotator=(
-                        self.box_annotator
-                    ),
+                label_annotator=(
+                    self.label_annotator
+                ),
 
-                    label_annotator=(
-                        self.label_annotator
-                    ),
+                rois=self.rois,
 
-                    rois=self.rois
-                )
+                homography=self.homography
             )
+        )
 
         # =====================================================
         # BIRD-EYE OUTPUT

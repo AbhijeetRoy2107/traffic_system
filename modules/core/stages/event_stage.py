@@ -1,6 +1,11 @@
 from modules.core.stages.base_stage import (
     BaseStage
 )
+
+
+# =========================================================
+# EVENT STAGE
+# =========================================================
 class EventStage(BaseStage):
 
     def __init__(
@@ -18,47 +23,64 @@ class EventStage(BaseStage):
     # PROCESS
     # =====================================================
     def process(
+
         self,
+
         frame_data
     ):
 
-        detections = frame_data.detections
+        detections = (
+            frame_data.detections
+        )
 
         if len(detections) == 0:
 
             return frame_data
 
-        for i, tracker_id in enumerate(
-            detections.tracker_id
+        for violation in (
+
+            frame_data.violations
         ):
 
-            zone = frame_data.zones.get(
-                tracker_id
+            tracker_id = violation.get(
+                "tracker_id"
             )
 
-            violations = []
-
-            if hasattr(
-                frame_data,
-                "violations"
-            ):
-
-                violations = [
-
-                    v for v in frame_data.violations
-
-                    if v.get(
-                        "tracker_id"
-                    ) == tracker_id
-                ]
-
-            self.event_manager.update(
-
-                tracker_id=tracker_id,
-
-                violations=violations,
-
-                zone=zone
+            event_type = violation.get(
+                "event_type"
             )
 
+            zone = violation.get(
+                "zone"
+            )
+
+            speed = violation.get(
+                "speed"
+            )
+
+            new_events = (
+                self.event_manager.update(
+
+                    tracker_id=tracker_id,
+
+                    violations=[
+                        event_type
+                    ],
+
+                    zone=zone,
+
+                    source="rule_engine",
+
+                    metadata={
+
+                        "speed":
+                            speed
+                    }
+                )
+            )
+
+            frame_data.events.extend(
+                new_events
+            )
+            
         return frame_data

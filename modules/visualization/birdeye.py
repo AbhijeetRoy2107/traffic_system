@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 
+from modules.visualization.map_projection import (
+    GlobalMapProjection
+)
 
 class BirdEyeVisualizer:
 
@@ -9,7 +12,7 @@ class BirdEyeVisualizer:
         width=1200,
         height=900,
         scale=30,
-        offset_x=300,
+        offset_x=500,
         offset_y=100,
         show_grid=True
     ):
@@ -29,6 +32,21 @@ class BirdEyeVisualizer:
         self.grid_color = (55, 55, 55)
 
         self.text_color = (255, 255, 255)
+
+        # =================================================
+        # ROI COLORS
+        # =================================================
+        self.roi_colors = [
+
+            (0, 180, 255),
+            (0, 255, 180),
+            (255, 180, 0),
+            (180, 0, 255),
+            (255, 80, 80)
+        ]
+        self.map_projection = (
+            GlobalMapProjection()
+        )
 
     # =====================================================
     # CREATE EMPTY CANVAS
@@ -84,10 +102,138 @@ class BirdEyeVisualizer:
 
         x += self.offset_x
 
-        # invert Y
-        y = self.height - y - self.offset_y
+        # normal Y orientation
+        y += self.offset_y
 
         return x, y
+
+    # =====================================================
+    # DRAW ROI LABEL ONLY
+    # =====================================================
+    def draw_roi(
+
+        self,
+
+        canvas,
+
+        roi,
+
+        homography,
+
+        color=(0, 180, 255)
+    ):
+
+        points = roi.get(
+            "points",
+            []
+        )
+
+        zone_name = roi.get(
+            "label",
+            "ZONE"
+        )
+
+        if len(points) < 3:
+            return
+
+        world_pts = []
+
+        # =================================================
+        # IMAGE -> WORLD
+        # =================================================
+        for pt in points:
+
+            world_pt = homography.to_world(
+                tuple(pt),
+                zone_name
+            )
+            
+            world_pt = self.map_projection.project_point(
+
+                world_pt,
+
+                zone_name
+            )
+
+            if world_pt is None:
+                continue
+
+            x, y = self.world_to_canvas(
+                world_pt
+            )
+
+            world_pts.append([x, y])
+
+        if len(world_pts) < 3:
+            return
+
+        polygon = np.array(
+            world_pts,
+            dtype=np.int32
+        )
+        
+        # =================================================
+        # THIN ROI BORDER
+        # =================================================
+        cv2.polylines(
+
+            canvas,
+
+            [polygon],
+
+            isClosed=True,
+
+            color=color,
+
+            thickness=1
+        )       
+
+        # =================================================
+        # CENTROID
+        # =================================================
+        centroid = np.mean(
+            polygon,
+            axis=0
+        ).astype(int)
+
+        # =================================================
+        # SMALL MARKER
+        # =================================================
+        cv2.circle(
+
+            canvas,
+
+            tuple(centroid),
+
+            6,
+
+            color,
+
+            -1
+        )
+
+        # =================================================
+        # LABEL
+        # =================================================
+        cv2.putText(
+
+            canvas,
+
+            zone_name,
+
+            (
+                centroid[0] + 10,
+                centroid[1]
+            ),
+
+            cv2.FONT_HERSHEY_SIMPLEX,
+
+            0.7,
+
+            color,
+
+            2
+        )
 
     # =====================================================
     # DRAW OBJECT
@@ -154,7 +300,12 @@ class BirdEyeVisualizer:
 
         pts = []
 
-        for pt in world_points:
+        # =============================================
+        # ONLY RECENT TRAJECTORY
+        # =============================================
+        recent_points = world_points[-8:]
+
+        for pt in recent_points:
 
             if pt is None:
                 continue
@@ -179,10 +330,48 @@ class BirdEyeVisualizer:
     # =====================================================
     # MAIN RENDER
     # =====================================================
-    def render(self, objects):
+    def render(
+
+        self,
+
+        objects,
+
+        rois=None,
+
+        homography=None
+    ):
 
         canvas = self.create_canvas()
 
+        # =================================================
+        # DRAW ROI LABELS
+        # =================================================
+        if (
+
+            rois is not None
+            and homography is not None
+        ):
+
+            for i, roi in enumerate(rois):
+
+                color = self.roi_colors[
+                    i % len(self.roi_colors)
+                ]
+
+                self.draw_roi(
+
+                    canvas=canvas,
+
+                    roi=roi,
+
+                    homography=homography,
+
+                    color=color
+                )
+
+        # =================================================
+        # DRAW OBJECTS
+        # =================================================
         for obj in objects:
 
             self.draw_object(
