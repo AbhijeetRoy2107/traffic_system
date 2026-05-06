@@ -2,10 +2,12 @@ import numpy as np
 import supervision as sv
 from collections import defaultdict
 
-from modules.engines.accident.accident_base import BaseAccidentEngine
+from modules.engines.base_engine import (
+    BaseEngine
+)
 
 
-class RuleBasedAccidentEngine(BaseAccidentEngine):
+class RuleBasedAccidentEngine(BaseEngine):
 
     def __init__(self):
 
@@ -18,7 +20,7 @@ class RuleBasedAccidentEngine(BaseAccidentEngine):
         self.distance_threshold = 40
         self.confirm_frames = 3
 
-    def detect(self, detections, trajectories, zone_logic):
+    def detect(self,detections,trajectories,zone_logic,frame=None,**kwargs):
 
         events = []
 

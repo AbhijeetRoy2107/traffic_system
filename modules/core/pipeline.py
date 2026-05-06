@@ -86,6 +86,10 @@ from modules.events.event_manager import (
 # =========================================================
 # ENGINES
 # =========================================================
+from modules.engines.engine_registry import (
+    EngineRegistry
+)
+
 from modules.engines.accident.accident_engine import (
     RuleBasedAccidentEngine
 )
@@ -145,8 +149,11 @@ from config.config import (
 class Pipeline:
 
     def __init__(
+
         self,
+
         video_info,
+
         video_path
     ):
 
@@ -222,11 +229,20 @@ class Pipeline:
         )
 
         # =====================================================
-        # ENGINES
+        # ENGINE REGISTRY
         # =====================================================
-        self.accident_engine = (
-            RuleBasedAccidentEngine()
+        self.engine_registry = (
+            EngineRegistry()
         )
+
+        if ENABLE_ACCIDENT_ENGINE:
+
+            self.engine_registry.register(
+
+                "accident",
+
+                RuleBasedAccidentEngine()
+            )
 
         # =====================================================
         # VISUALIZATION
@@ -331,15 +347,9 @@ class Pipeline:
         self.engine_stage = (
             EngineStage(
 
-                accident_engine=(
-                    self.accident_engine
-                    if ENABLE_ACCIDENT_ENGINE
-                    else None
-                ),
-
-                emergency_engine=None,
-
-                anpr_engine=None
+                engine_registry=(
+                    self.engine_registry
+                )
             )
         )
 
@@ -544,7 +554,12 @@ class Pipeline:
         # =====================================================
         # ACCIDENT DISPLAY TIMER
         # =====================================================
-        if frame_data.accidents:
+        accidents = frame_data.engines.get(
+            "accident",
+            []
+        )
+
+        if accidents:
 
             self.accident_display_timer = (
                 self.accident_display_duration

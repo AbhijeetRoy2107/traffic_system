@@ -13,3 +13,37 @@
 [2026-05-06 12:00:56,245] [INFO] Loaded 0 ROIs
 [2026-05-06 12:00:56,255] [INFO] Pipeline initialized successfully
 [2026-05-06 12:02:06,190] [INFO] Pipeline released
+[2026-05-06 12:06:08,201] [INFO] Initializing pipeline...
+[2026-05-06 12:06:09,881] [INFO] Homography manager initialized
+[2026-05-06 12:06:09,882] [INFO] Loaded 0 ROIs
+[2026-05-06 12:06:09,884] [INFO] Pipeline initialized successfully
+[2026-05-06 12:06:51,543] [INFO] Pipeline released
+[2026-05-06 12:07:23,833] [INFO] Initializing pipeline...
+[2026-05-06 12:07:25,518] [INFO] Homography manager initialized
+[2026-05-06 12:07:25,518] [INFO] Loaded 2 ROIs
+[2026-05-06 12:07:25,520] [INFO] Pipeline initialized successfully
+[2026-05-06 12:07:34,167] [INFO] Pipeline released
+[2026-05-06 12:12:24,536] [INFO] Initializing pipeline...
+[2026-05-06 12:12:26,198] [INFO] Homography manager initialized
+[2026-05-06 12:12:26,220] [INFO] Loaded 3 ROIs
+[2026-05-06 12:12:26,223] [INFO] Pipeline initialized successfully
+[2026-05-06 12:12:54,594] [INFO] Pipeline released
+[2026-05-06 12:16:18,166] [INFO] Initializing pipeline...
+[2026-05-06 12:16:19,832] [INFO] Homography manager initialized
+[2026-05-06 12:16:19,833] [INFO] Loaded 2 ROIs
+[2026-05-06 12:16:19,835] [INFO] Pipeline initialized successfully
+[2026-05-06 12:16:28,502] [INFO] Pipeline released
+[2026-05-06 12:17:58,491] [INFO] Initializing pipeline...
+[2026-05-06 12:17:59,504] [INFO] Homography manager initialized
+[2026-05-06 12:17:59,504] [INFO] Loaded 2 ROIs
+[2026-05-06 12:17:59,507] [INFO] Pipeline initialized successfully
+[2026-05-06 12:18:08,156] [INFO] Pipeline released
+[2026-05-06 12:33:06,140] [INFO] Initializing pipeline...
+[2026-05-06 12:33:07,816] [INFO] Homography manager initialized
+[2026-05-06 12:33:07,816] [INFO] Loaded 2 ROIs
+[2026-05-06 12:33:07,819] [INFO] Pipeline initialized successfully
+[2026-05-06 12:34:47,253] [INFO] Initializing pipeline...
+[2026-05-06 12:34:48,939] [INFO] Homography manager initialized
+[2026-05-06 12:34:48,940] [INFO] Loaded 2 ROIs
+[2026-05-06 12:34:48,942] [INFO] Pipeline initialized successfully
+[2026-05-06 12:34:57,561] [INFO] Pipeline released

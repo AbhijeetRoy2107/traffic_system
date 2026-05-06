@@ -2,29 +2,18 @@ from modules.core.stages.base_stage import (
     BaseStage
 )
 
+
 class EngineStage(BaseStage):
 
     def __init__(
 
         self,
 
-        accident_engine=None,
-
-        emergency_engine=None,
-
-        anpr_engine=None
+        engine_registry
     ):
 
-        self.accident_engine = (
-            accident_engine
-        )
-
-        self.emergency_engine = (
-            emergency_engine
-        )
-
-        self.anpr_engine = (
-            anpr_engine
+        self.engine_registry = (
+            engine_registry
         )
 
     # =====================================================
@@ -45,59 +34,25 @@ class EngineStage(BaseStage):
 
         detections = frame_data.detections
 
-        # =================================================
-        # ACCIDENT ENGINE
-        # =================================================
-        if self.accident_engine is not None:
+        engines = (
+            self.engine_registry.get_all()
+        )
 
-            accidents = (
-                self.accident_engine.detect(
+        for engine_name, engine in engines.items():
 
-                    detections=detections,
+            results = engine.detect(
 
-                    trajectories=trajectory_manager,
+                detections=detections,
 
-                    zone_logic=zone_logic
-                )
+                trajectories=trajectory_manager,
+
+                zone_logic=zone_logic,
+
+                frame=frame
             )
 
             frame_data.engines[
-                "accident"
-            ] = accidents
+                engine_name
+            ] = results
 
-        # =================================================
-        # EMERGENCY VEHICLE ENGINE
-        # =================================================
-        if self.emergency_engine is not None:
-
-            emergency_events = (
-                self.emergency_engine.detect(
-
-                    frame,
-
-                    detections
-                )
-            )
-
-            frame_data.engines[
-                "emergency"
-            ] = emergency_events
-            
-        # =================================================
-        # ANPR ENGINE
-        # =================================================
-        if self.anpr_engine is not None:
-
-            anpr_results = (
-                self.anpr_engine.detect(
-
-                    frame,
-
-                    detections
-                )
-            )
-
-            frame_data.engines[
-                "anpr"
-            ] = anpr_results
         return frame_data

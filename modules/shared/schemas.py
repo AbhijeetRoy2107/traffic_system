@@ -1,11 +1,13 @@
 from dataclasses import dataclass, field
+
 from typing import Dict, List, Any
+
 import time
 import uuid
 
 
 # =========================================================
-# BASE EVENT
+# EVENT SCHEMA
 # =========================================================
 @dataclass
 class EventSchema:
