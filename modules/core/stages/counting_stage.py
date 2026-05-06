@@ -1,7 +1,9 @@
 from collections import defaultdict
+from modules.core.stages.base_stage import (
+    BaseStage
+)
 
-
-class CountingStage:
+class CountingStage(BaseStage):
 
     def __init__(self):
 

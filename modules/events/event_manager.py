@@ -1,5 +1,5 @@
 import time
-
+from modules.shared.schemas import create_event
 
 class EventManager:
 
@@ -33,14 +33,16 @@ class EventManager:
             if current_time - last_time < self.cooldown:
                 continue
 
-            event = {
-                "type": v,
-                "tracker_id": tracker_id,
-                "zone": zone,
-                "time": current_time
-            }
+            event = create_event(
+                event_type=v,
+                tracker_ids=[tracker_id],
+                zone=zone,
+                severity="warning"
+            )
 
-            self.events.append(event)
+            self.events.append(
+                event.__dict__
+            )
             self.last_events[key] = current_time
             new_events.append(event)
 

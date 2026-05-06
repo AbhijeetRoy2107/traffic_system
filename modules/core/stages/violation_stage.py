@@ -1,4 +1,7 @@
-class ViolationStage:
+from modules.core.stages.base_stage import (
+    BaseStage
+)
+class ViolationStage(BaseStage):
 
     def __init__(
         self,

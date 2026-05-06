@@ -6,9 +6,12 @@ from config.config import (
     IOU_THRESHOLD,
     ALLOWED_CLASSES
 )
+from modules.core.stages.base_stage import (
+    BaseStage
+)
 
 
-class DetectionStage:
+class DetectionStage(BaseStage):
 
     def __init__(self, detector):
 

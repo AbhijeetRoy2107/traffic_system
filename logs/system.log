@@ -3,3 +3,8 @@
 [2026-05-06 11:35:34,879] [INFO] Loaded 2 ROIs
 [2026-05-06 11:35:34,882] [INFO] Pipeline initialized successfully
 [2026-05-06 11:35:43,581] [INFO] Pipeline released
+[2026-05-06 12:00:34,973] [INFO] Initializing pipeline...
+[2026-05-06 12:00:37,108] [INFO] Homography manager initialized
+[2026-05-06 12:00:37,109] [INFO] Loaded 2 ROIs
+[2026-05-06 12:00:37,122] [INFO] Pipeline initialized successfully
+[2026-05-06 12:00:45,937] [INFO] Pipeline released

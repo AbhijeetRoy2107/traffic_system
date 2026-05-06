@@ -6,8 +6,11 @@ from config.config import (
     MAX_TRAJECTORY_POINTS
 )
 
+from modules.core.stages.base_stage import (
+    BaseStage
+)
 
-class VisualizationStage:
+class VisualizationStage(BaseStage):
 
     def __init__(
 

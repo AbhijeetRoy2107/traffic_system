@@ -1,9 +1,11 @@
 import numpy as np
 import supervision as sv
 import cv2
+from modules.core.stages.base_stage import (
+    BaseStage
+)
 
-
-class SpatialStage:
+class SpatialStage(BaseStage):
 
     def __init__(
         self,

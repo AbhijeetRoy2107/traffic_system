@@ -2,8 +2,11 @@ from config.config import (
     MAX_TRAJECTORY_POINTS
 )
 
+from modules.core.stages.base_stage import (
+    BaseStage
+)
 
-class AnalyticsStage:
+class AnalyticsStage(BaseStage):
 
     def __init__(
         self,

@@ -1,4 +1,7 @@
-class EventStage:
+from modules.core.stages.base_stage import (
+    BaseStage
+)
+class EventStage(BaseStage):
 
     def __init__(
 

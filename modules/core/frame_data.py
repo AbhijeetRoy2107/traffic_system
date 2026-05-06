@@ -93,3 +93,10 @@ class FrameData:
     metadata: Dict[str, Any] = field(
         default_factory=dict
     )
+    
+    # =====================================================
+    # ENGINE OUTPUTS
+    # =====================================================
+    engines: Dict[str, Any] = field(
+        default_factory=dict
+    )

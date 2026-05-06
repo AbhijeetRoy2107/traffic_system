@@ -1,4 +1,8 @@
-class EngineStage:
+from modules.core.stages.base_stage import (
+    BaseStage
+)
+
+class EngineStage(BaseStage):
 
     def __init__(
 
@@ -57,9 +61,9 @@ class EngineStage:
                 )
             )
 
-            frame_data.accidents = (
-                accidents
-            )
+            frame_data.engines[
+                "accident"
+            ] = accidents
 
         # =================================================
         # EMERGENCY VEHICLE ENGINE
@@ -75,10 +79,10 @@ class EngineStage:
                 )
             )
 
-            frame_data.metadata[
-                "emergency_events"
+            frame_data.engines[
+                "emergency"
             ] = emergency_events
-
+            
         # =================================================
         # ANPR ENGINE
         # =================================================
@@ -93,8 +97,7 @@ class EngineStage:
                 )
             )
 
-            frame_data.metadata[
-                "anpr_results"
+            frame_data.engines[
+                "anpr"
             ] = anpr_results
-
         return frame_data

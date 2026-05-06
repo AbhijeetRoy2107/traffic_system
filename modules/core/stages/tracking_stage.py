@@ -1,4 +1,7 @@
-class TrackingStage:
+from modules.core.stages.base_stage import (
+    BaseStage
+)
+class TrackingStage(BaseStage):
 
     def __init__(
         self,
